@@ -17,6 +17,7 @@
 		0AB5AF7025FC786C00CE2FE6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5AF6F25FC786C00CE2FE6 /* UserDefaults.swift */; };
 		0AB5AF7325FC79CC00CE2FE6 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5AF7225FC79CC00CE2FE6 /* ChatTableViewCell.swift */; };
 		0AD9493125FC7D0A00A96DF9 /* newConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9493025FC7D0A00A96DF9 /* newConversationViewController.swift */; };
+		0AD9493925FCEC3600A96DF9 /* NewConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD9493825FCEC3600A96DF9 /* NewConversationTableViewCell.swift */; };
 		CC8F1B71F00B71EBD6A356E5 /* Pods_Qiscus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A5C961347A1EE9C6D29152 /* Pods_Qiscus.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		0AB5AF6F25FC786C00CE2FE6 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		0AB5AF7225FC79CC00CE2FE6 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		0AD9493025FC7D0A00A96DF9 /* newConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newConversationViewController.swift; sourceTree = "<group>"; };
+		0AD9493825FCEC3600A96DF9 /* NewConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationTableViewCell.swift; sourceTree = "<group>"; };
 		71A5C961347A1EE9C6D29152 /* Pods_Qiscus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qiscus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18D056D5ABC70D6F3A07F28 /* Pods-Qiscus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiscus.release.xcconfig"; path = "Target Support Files/Pods-Qiscus/Pods-Qiscus.release.xcconfig"; sourceTree = "<group>"; };
 		F388CF44BD43A1CEE9A14854 /* Pods-Qiscus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiscus.debug.xcconfig"; path = "Target Support Files/Pods-Qiscus/Pods-Qiscus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0A332E2025FC3F1F00724E2A /* ChatViewController.swift */,
 				0AB5AF7225FC79CC00CE2FE6 /* ChatTableViewCell.swift */,
 				0AD9493025FC7D0A00A96DF9 /* newConversationViewController.swift */,
+				0AD9493825FCEC3600A96DF9 /* NewConversationTableViewCell.swift */,
 				0A772E6F25FC34C200E54F42 /* Main.storyboard */,
 				0A772E7525FC34C300E54F42 /* Assets.xcassets */,
 				0A772E7725FC34C300E54F42 /* LaunchScreen.storyboard */,
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A772E6E25FC34C200E54F42 /* ViewController.swift in Sources */,
+				0AD9493925FCEC3600A96DF9 /* NewConversationTableViewCell.swift in Sources */,
 				0AD9493125FC7D0A00A96DF9 /* newConversationViewController.swift in Sources */,
 				0AB5AF7025FC786C00CE2FE6 /* UserDefaults.swift in Sources */,
 				0A772E6A25FC34C200E54F42 /* AppDelegate.swift in Sources */,
