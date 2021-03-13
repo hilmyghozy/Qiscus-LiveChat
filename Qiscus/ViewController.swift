@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import QiscusCore
 
 class ViewController: UIViewController {
 
@@ -24,10 +25,20 @@ class ViewController: UIViewController {
     @IBAction func submitBtn(_ sender: Any) {
         let username = usernameTF.text!
         let password = passwordTF.text!
+        let userKey = "dc0c7e608d9a23c3c8012c6c8572e788"
         
         if usernameA.contains(username){
             if password == passwordA{
-                print("Success")
+                QiscusCore.setUser(userId: username, userKey: userKey, username: username, avatarURL: nil, extras: nil, onSuccess: { (user) in
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.registerDeviceToken()
+                    appDelegate.auth()
+                }) { (error) in
+                    let alert = UIAlertController(title: "Failed to Login?", message: String(describing: error.message), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again", style: .cancel, handler: nil))
+                    
+                    self.present(alert, animated: true)
+                }
                 
             }
         }

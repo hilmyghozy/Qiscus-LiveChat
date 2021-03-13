@@ -7,6 +7,11 @@
 
 import UIKit
 import CoreData
+import Foundation
+import QiscusCore
+import SwiftyJSON
+
+let APP_ID : String = "sdksample"
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        QiscusCore.enableDebugMode(value: true)
+        QiscusCore.setup(AppID: APP_ID)
+        self.auth()
         return true
     }
 
@@ -61,5 +69,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
+}
+
+extension AppDelegate {
+    // Auth
+    func auth() {
+        let target : UIViewController
+        if QiscusCore.hasSetupUser() {
+            target = ChatViewController()
+            _ = QiscusCore.connect(delegate: self)
+        }else {
+            target = ViewController()
+        }
+        let navbar = UINavigationController()
+        navbar.viewControllers = [target]
+    }
+    
+    func registerDeviceToken(){
+        if let deviceToken = UserDefaults.standard.getDeviceToken(){
+            //change isDevelopment to false for production and true for development
+            QiscusCore.shared.registerDeviceToken(token: deviceToken, onSuccess: { (success) in
+                print("success register device token =\(deviceToken)")
+            }) { (error) in
+                print("failed register device token = \(error.message)")
+            }
+        }
+    }
+}
+
+extension AppDelegate : QiscusConnectionDelegate {
+    func onConnected(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reSubscribeRoom"), object: nil)
+    }
+    func onReconnecting(){
+        
+    }
+    func onDisconnected(withError err: QError?){
+        
+    }
+    
+    func connectionState(change state: QiscusConnectionState) {
+        if (state == .disconnected){
+            var roomsId = [String]()
+            
+            let rooms = QiscusCore.database.room.all()
+            
+            if rooms.count != 0{
+                
+                for room in rooms {
+                    roomsId.append(room.id)
+                }
+                
+                QiscusCore.shared.getChatRooms(roomIds: roomsId, showRemoved: false, showParticipant: true, onSuccess: { (rooms) in
+                    //brodcast rooms to your update ui ex in ui listRoom
+                }, onError: { (error) in
+                    print("error = \(error.message)")
+                })
+                
+            }
+            
+        }
+        
+    }
 }
 
