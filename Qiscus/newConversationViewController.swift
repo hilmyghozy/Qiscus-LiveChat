@@ -48,22 +48,24 @@ class newConversationViewController: UIViewController {
             self.loadContactsDidFailed(message: error.message)
         }
     }
-    
+
     func chat(withRoom room: RoomModel){
-        let target = ChatViewController()
-        target.room = room
-        self.navigationController?.pushViewController(target, animated: true)
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatRoom") as? ChatRoomViewViewController
+        vc?.room = room
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 
 
 }
 extension newConversationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         self.tableView.deselectRow(at: indexPath, animated: true)
         if let contact = self.contactAll{
             let userId = contact[indexPath.row].email
             QiscusCore.shared.chatUser(userId: userId, onSuccess: { (room, comments) in
-                 self.chat(withRoom: room)
+                self.chat(withRoom: room)
+                print("dari contact \(room)")
             }) { (error) in
                 print("error chat: \(error.message)")
             }
@@ -86,7 +88,6 @@ extension newConversationViewController: UITableViewDataSource {
         if let contacts = self.contactAll{
             let contact = contacts[indexPath.row]
             cell.contactLbl.text = contact.username
-            print(" \(contact.username)")
             
             if indexPath.row == contacts.count - 1{
                 self.getContacts()

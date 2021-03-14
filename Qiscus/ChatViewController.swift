@@ -16,8 +16,6 @@ class ChatViewController: UIViewController {
     
     var user: String?
     
-    var room : RoomModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
